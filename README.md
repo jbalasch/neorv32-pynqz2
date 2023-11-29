@@ -12,6 +12,8 @@ The **bootloader** design uses a UART port connected to pins 40 (`TX`)) and 38 (
 
 The **on-chip-debugger** extends the previous design with support for JTAG debugging. The JTAG signals (`TMS`, `TDI`, `TDO`, `TCK`) are mapped to the PMOD A connector (pins 1 to 4). To access the on-chip-debugger you can use e.g. a Digilent JTAG-HS2 Programming Cable as shown below. The folder contains an OpenOCD configuration file (`openocd_neorv32.cfg`) compatible with this device. It has been tested with **OpenOCD v0.12.0**.
 
+In both designs the 8 GPIO interfaces are mapped to LEDs (normal and RGB). A clock generator module (`clkgen_pynqz2.sv`) is used to convert the internal 125 MHz to the 100 MHz clock signal as used in the reference examples. Note that the setup requires a cable present in the Ethernet connector to work correctly, otherwise the internal 125 MHz clock is not stable (see e.g. comments in this [thread](https://www.reddit.com/r/FPGA/comments/xbqphs/tul_pynqz2_zynq_development_board_has_anyone_used/)).
+
 ![Pynq-Z2 interfaces](setup.jpg "Pynq-Z2 interfaces")
 
 For more information about running the test setups (and the NEORV32 core in general) check the official documentation:
